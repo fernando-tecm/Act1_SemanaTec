@@ -83,8 +83,13 @@ def square(start, end):
 # Las siguientes funciones (circle, rectangle, triangle) están por implementar.
 
 def circle(start, end):
-    """Dibuja un círculo desde el punto de inicio hasta el punto final."""
-    pass
+    up()
+    goto(start.x, start.y)
+    down()
+    radius = (end.x - start.x) / 2
+    circle = 3 * radius * 2
+    seth(90)
+    circle(radius, circle)
 
 def rectangle(start, end):
     """Dibuja un rectángulo desde el punto de inicio hasta el punto final."""
@@ -92,7 +97,16 @@ def rectangle(start, end):
 
 def triangle(start, end):
     """Dibuja un triángulo desde el punto de inicio hasta el punto final."""
-    pass
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+
+    for count in range(3):
+        forward(end.x - start.x)
+        left(120)
+
+    end_fill()
 
 def tap(x, y):
     """
@@ -135,6 +149,7 @@ onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
+onkey(lambda: color('yellow'), 'Y')
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')
